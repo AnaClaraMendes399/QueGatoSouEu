@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐱 Que Gato sou eu?</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <h1>🐱 Que Gato sou eu? 🐱</h1>
+    
+    <form action="/cat" method="post">
+        <input type="text" name="nome" placeholder="Digite seu Nome" required>
+        <button type="submit">Localizar meu Gato</button>
+    </form>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    
+    <hr>
+    {% if url_imagem %}
+        <img src="{{ url_imagem }}" class="imagem_gato" alt="Seu gato">
+        <p class="nome_gato">{{ nome }}, esse gato é o seu! 🎉</p>
+    {% else %}
+        <img src="https://placekitten.com/500/300" class="imagem_gato" alt="Gato placeholder">
+        <p class="nome_gato">Digite seu nome para encontrar seu gato!</p>
+    {% endif %}
+</body>
+</html>
